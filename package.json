@@ -1,0 +1,19 @@
+{
+  "name": "gamesup42-pitch",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "capture": "node tools/capture/record.mjs",
+    "media": "node tools/media/build-media.mjs",
+    "fetch-builds": "node tools/deploy/fetch-builds.mjs"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "playwright": "^1.49.0",
+    "sharp": "^0.33.5"
+  }
+}

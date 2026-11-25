@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Вариант A — Смена</title>
+<link rel="stylesheet" href="variants.css">
+<style>
+  .hero > img { filter: saturate(.9) contrast(1.05); }
+  .top { position: absolute; z-index: 3; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 28px 40px; }
+  .brand { display: flex; gap: 14px; align-items: center; }
+  .brand b { font: 700 15px/1 var(--mono); letter-spacing: .24em; }
+  .brand span { font: 11px/1 var(--mono); letter-spacing: .18em; color: var(--dim); }
+  .wrap { position: absolute; z-index: 3; inset: 0; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; padding: 0 40px; gap: 40px; }
+  h1 { font: 200 clamp(64px, 9vw, 132px)/.9 var(--sans); letter-spacing: .08em; margin-bottom: 22px; }
+  h1 span { display: block; font-size: .28em; letter-spacing: .34em; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }
+  p.lead { max-width: 560px; font-size: 17px; line-height: 1.55; color: #C7D2DA; margin-bottom: 30px; }
+  .actions { display: flex; gap: 12px; margin-bottom: 40px; }
+  .meta { display: flex; gap: 26px; flex-wrap: wrap; }
+  .meta div { border-left: 1px solid var(--line); padding-left: 12px; }
+  .meta b { display: block; font: 500 20px/1 var(--sans); margin-bottom: 6px; }
+  .scan { position: relative; justify-self: center; width: min(38vw, 460px); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; }
+  .scan::before, .scan::after { content: ""; position: absolute; border: 1px solid rgba(111,215,230,.15); border-radius: 50%; }
+  .scan::before { inset: 12%; } .scan::after { inset: 26%; }
+  .scan i { position: absolute; width: 1px; height: 100%; background: linear-gradient(180deg, transparent, var(--line), transparent); }
+  .scan i:nth-child(2) { transform: rotate(90deg); }
+  .scan i:nth-child(3) { transform: rotate(45deg); opacity: .5; }
+  .scan i:nth-child(4) { transform: rotate(-45deg); opacity: .5; }
+  .scan .tag { position: relative; z-index: 2; text-align: center; }
+  .scan .tag b { display: block; font: 300 38px/1 var(--sans); letter-spacing: .1em; color: var(--cyan); }
+  .scan .tag span { font: 11px/1 var(--mono); letter-spacing: .22em; color: var(--dim); }
+  .bottom { position: absolute; z-index: 3; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 22px 40px; border-top: 1px solid rgba(255,255,255,.08); background: rgba(6,9,12,.45); backdrop-filter: blur(6px); }
+  .bottom .mono { color: #9FB0BC; }
+  .side { position: absolute; z-index: 3; left: 12px; top: 50%; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; font: 10px/1 var(--mono); letter-spacing: .4em; color: rgba(233,238,242,.28); }
+</style></head>
+<body>
+<div class="label">Вариант A · «Смена»</div>
+<section class="hero">
+  <img src="img/scan.png" alt="">
+  <div class="scanlines"></div>
+  <div class="side">COLONY 07 · NORTH PERIMETER · SECTOR 07</div>
+  <header class="top">
+    <div class="brand"><b>FROSTSPACE</b><span>/ COLONY 07</span></div>
+    <div class="mono">BUILD 0.1 · WEBGL · 30 MIN</div>
+  </header>
+  <div class="wrap">
+    <div>
+      <h1><span>Смена</span>FROST<br>SPACE</h1>
+      <p class="lead">Робот-курьер, мёртвая зима и последний узел связи. Донести груз. Не замолчать. Не забыть, зачем ехал.</p>
+      <div class="actions"><a class="btn solid" href="#">Играть в браузере</a><a class="btn ghost" href="#">Смотреть трейлер</a></div>
+      <div class="meta">
+        <div><b>30 мин</b><span class="mono">контента</span></div>
+        <div><b>121</b><span class="mono">клетка мира</span></div>
+        <div><b>413</b><span class="mono">мешей Blender</span></div>
+        <div><b>277</b><span class="mono">тестов</span></div>
+      </div>
+    </div>
+    <div class="scan">
+      <i></i><i></i><i></i><i></i>
+      <div class="tag"><b>R13</b><span>PROSPECTOR · 4.0 M</span></div>
+    </div>
+  </div>
+  <footer class="bottom"><div class="mono">FROSTSPACE / 2026 / SOLO + AI</div><div class="mono cyan">SIGNAL: 12% · SILENCE: DETECTED</div><div class="mono">01 / 05</div></footer>
+</section>
+</body></html>

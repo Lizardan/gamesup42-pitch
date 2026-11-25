@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Вариант B — Терминал диспетчера</title>
+<link rel="stylesheet" href="variants.css">
+<style>
+  body { background: #070A0D; }
+  .hero { display: grid; grid-template-columns: 420px 1fr; }
+  .hero::after { display: none; }
+  .panel { position: relative; z-index: 3; border-right: 1px solid rgba(111,215,230,.18); background: linear-gradient(180deg, rgba(8,13,17,.98), rgba(8,13,17,.9)); padding: 34px 30px; display: flex; flex-direction: column; }
+  .brand { font: 700 14px/1 var(--mono); letter-spacing: .3em; margin-bottom: 6px; }
+  .sub { font: 10px/1 var(--mono); letter-spacing: .22em; color: var(--dim); margin-bottom: 46px; }
+  .menu { display: flex; flex-direction: column; gap: 2px; }
+  .menu a { display: flex; align-items: baseline; gap: 14px; padding: 15px 12px; text-decoration: none; color: var(--ink); font: 500 17px/1 var(--sans); border-left: 2px solid transparent; }
+  .menu a i { font: 10px/1 var(--mono); color: var(--dim); font-style: normal; }
+  .menu a:hover, .menu a.on { background: rgba(111,215,230,.07); border-left-color: var(--cyan); }
+  .menu a.on span { color: var(--cyan); }
+  .panel .note { margin-top: auto; font: 11px/1.7 var(--mono); color: var(--dim); letter-spacing: .08em; }
+  .stage { position: relative; overflow: hidden; }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) brightness(.85); }
+  .stage::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 90% at 70% 40%, transparent, rgba(5,8,10,.85)); }
+  .frame { position: absolute; z-index: 3; inset: 44px; border: 1px solid rgba(111,215,230,.3); }
+  .frame::before, .frame::after { content: ""; position: absolute; width: 26px; height: 26px; border: 2px solid var(--cyan); }
+  .frame::before { left: -2px; top: -2px; border-right: 0; border-bottom: 0; }
+  .frame::after { right: -2px; bottom: -2px; border-left: 0; border-top: 0; }
+  .hud { position: absolute; z-index: 4; inset: 44px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+  .hud .row { display: flex; justify-content: space-between; }
+  .chip { font: 10px/1 var(--mono); letter-spacing: .18em; color: var(--cyan); border: 1px solid rgba(111,215,230,.35); padding: 8px 10px; background: rgba(7,12,16,.6); }
+  .titleblock { position: absolute; z-index: 4; left: 22px; bottom: 24px; }
+  .titleblock h1 { font: 200 74px/.9 var(--sans); letter-spacing: .1em; margin-bottom: 14px; }
+  .titleblock p { font: 11px/1.8 var(--mono); letter-spacing: .16em; color: #A9B8C3; max-width: 420px; margin-bottom: 18px; }
+  .tele { position: absolute; z-index: 4; right: 22px; bottom: 24px; text-align: right; font: 11px/2 var(--mono); letter-spacing: .12em; color: var(--dim); }
+  .tele b { color: var(--cyan); font-weight: 500; }
+  .topbar { position: absolute; z-index: 5; top: 0; left: 420px; right: 0; display: flex; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(6,9,12,.6); }
+</style></head>
+<body>
+<div class="label">Вариант B · «Терминал диспетчера»</div>
+<section class="hero">
+  <aside class="panel">
+    <div class="brand">FROSTSPACE</div><div class="sub">COLONY 07 / NORTH PERIMETER</div>
+    <nav class="menu">
+      <a href="#"><i>01</i><span>Продолжить</span></a>
+      <a href="#" class="on"><i>02</i><span>Начать смену</span></a>
+      <a href="#"><i>03</i><span>Настройки</span></a>
+      <a href="#"><i>04</i><span>Выход</span></a>
+    </nav>
+    <div class="note">BUILD 0.1 / WEBGL<br>СОЛО + AI / 30 МИНУТ<br>© 2026 · СЕРГЕЙ</div>
+  </aside>
+  <div class="stage">
+    <img src="img/train.png" alt="">
+    <div class="topbar"><span class="mono cyan">ЗАДАНИЕ: ПОГРУЗИТЬ АККУМУЛЯТОРЫ 4/4</span><span class="mono">ПОЕЗД · ВАГОН 01</span></div>
+    <div class="frame"></div>
+    <div class="hud">
+      <div class="row"><span class="chip">SCAN: ON · Q</span><span class="chip">XP 1 · 250/1000</span></div>
+      <div class="row" style="align-items:flex-end">
+        <div class="titleblock">
+          <h1>FROST<br>SPACE</h1>
+          <p>Сюжетный срез: доставить груз, пережить аварию и выйти в депо. Дальше — открытый мир, который живёт без вас.</p>
+          <a class="btn solid" href="#">Играть</a>
+        </div>
+        <div class="tele">TEMP <b>−47°C</b><br>SIGNAL <b>12%</b><br>SILENCE <b class="amber">DETECTED</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body></html>

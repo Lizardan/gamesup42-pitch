@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Вариант C — Киножурнал</title>
+<link rel="stylesheet" href="variants.css">
+<style>
+  body { background: #050709; }
+  .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 40px; }
+  .bar { position: absolute; z-index: 4; left: 0; right: 0; height: 9vh; background: #050709; }
+  .bar.t { top: 0; } .bar.b { bottom: 0; }
+  .shot { position: relative; z-index: 2; width: min(1240px, 86vw); aspect-ratio: 21/9; overflow: hidden; border: 1px solid rgba(255,255,255,.12); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.8) contrast(1.05) brightness(.9); }
+  .shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,7,9,.15), transparent 40%, rgba(5,7,9,.7)); }
+  .shot .cap { position: absolute; z-index: 3; left: 24px; bottom: 20px; font: 10px/1 var(--mono); letter-spacing: .28em; color: rgba(233,238,242,.7); }
+  .shot .corner { position: absolute; z-index: 3; right: 24px; top: 20px; font: 10px/1 var(--mono); letter-spacing: .24em; color: var(--cyan); }
+  .copy { position: relative; z-index: 3; text-align: center; margin-top: 34px; }
+  h1 { font: 100 clamp(54px, 8vw, 110px)/.95 var(--sans); letter-spacing: .26em; margin-left: .26em; }
+  .copy p { margin: 18px auto 26px; max-width: 620px; font-size: 15px; line-height: 1.6; color: #A9B6C0; }
+  .line { display: flex; gap: 18px; justify-content: center; align-items: center; }
+  .line a { color: var(--ink); text-decoration: none; font: 500 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; border-bottom: 1px solid rgba(111,215,230,.5); padding-bottom: 6px; }
+  .line .sep { width: 4px; height: 4px; background: var(--amber); }
+  .foot { position: absolute; z-index: 4; bottom: 3vh; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; }
+</style></head>
+<body>
+<div class="label">Вариант C · «Киножурнал»</div>
+<section class="hero">
+  <div class="bar t"></div><div class="bar b"></div>
+  <figure class="shot"><img src="img/settlement.png" alt=""><span class="corner">COLONY 07 · ДЕПО</span><span class="cap">КАДР 04 · ПРИБЫТИЕ</span></figure>
+  <div class="copy">
+    <h1>FROSTSPACE</h1>
+    <p>История одного рейса в мир, который замолкает. Тридцать минут смены, рукописный снежный мир и открытый финал, из которого вырастает станция-хаб.</p>
+    <div class="line"><a href="#">Играть в браузере</a><span class="sep"></span><a href="#">Трейлер 90 с</a></div>
+  </div>
+  <footer class="foot"><span class="mono">UNITY · WEBGL · 2026</span><span class="mono">СОЛО + AI</span></footer>
+</section>
+</body></html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrostSpace — сюжетный прототип на 30 минут · портфолио AI-продюсера</title>
+<meta name="description" content="FrostSpace — играбельный в браузере сюжетный срез про робота-курьера. Плюс два проекта: BARAKI и Woodberry. План полной версии на 6 месяцев.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+
+<nav class="nav">
+  <a class="logo" href="#top">FROSTSPACE</a>
+  <div class="links">
+    <a href="#about">О игре</a>
+    <a href="#play">Играть</a>
+    <a href="#unique">Механики</a>
+    <a href="#ai">Как сделано</a>
+    <a href="#roadmap">6 месяцев</a>
+    <a href="#projects">Проекты</a>
+  </div>
+  <a class="play" href="#play">Играть</a>
+</nav>
+
+<header class="hero" id="top">
+  <img class="hero-bg" src="assets/img/hero.png" alt="FrostSpace: робот-курьер у дома в снежном мире">
+  <div class="scanlines"></div>
+  <div class="wrap">
+    <div>
+      <div class="kicker"><span class="mono">COLONY 07 / NORTH PERIMETER</span><span class="mono cyan">BUILD 0.1 · WEBGL</span></div>
+      <h1><span>Смена</span>FROST<br>SPACE</h1>
+      <p class="lead">Робот-курьер, мёртвая зима и последний узел связи. Донести груз. Не замолчать. Не забыть, зачем ехал.</p>
+      <div class="actions">
+        <a class="btn solid" href="#play">Играть в браузере</a>
+        <a class="btn ghost" href="#video">Смотреть трейлер</a>
+      </div>
+      <div class="meta">
+        <div><b>30 мин</b><span class="mono">контента</span></div>
+        <div><b>121</b><span class="mono">клетка мира</span></div>
+        <div><b>413</b><span class="mono">мешей Blender</span></div>
+        <div><b>277</b><span class="mono">тестов</span></div>
+      </div>
+    </div>
+    <div class="reticle" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+      <div class="tag"><b>R13</b><span>PROSPECTOR · 4.0 M</span></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <span class="mono">FROSTSPACE / 2026 / SOLO + AI</span>
+    <span class="mono cyan">SIGNAL: 12% · SILENCE: DETECTED</span>
+    <span class="mono">01 / 05</span>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">01 / О ИГРЕ</span>
+      <h2>Мир, который замолкает</h2>
+      <p>Снежная промышленная окраина. Людей больше нет — остались роботы и искусственная жизнь. По миру идёт Тишина: вирус, который гасит «я» в машинах.</p>
+    </div>
+    <div class="grid2">
+      <div>
+        <p class="quote">Мир не ждёт спасения, и герой не ждёт. Он делает <b>смену</b>, пока она делается.</p>
+        <p style="margin-top:22px;color:var(--dim);max-width:560px">Вы — робот-курьер аккумуляторов. Память недавно перезагрузили: вы не помните прошлых рейсов и не знаете напарника. Это объясняет и обучение, и вопросы вслух, и то, почему вам объясняют очевидные вещи.</p>
+      </div>
+      <figure class="shot"><img src="assets/img/train.png" alt="Интерьер вагона: герой и R13"></figure>
+    </div>
+    <div class="grid3" style="margin-top:36px">
+      <article class="card"><span class="index">МИР</span><h3>Колония 07</h3><p>Склады, депо, мастерские и станции связи. Энергия — аккумуляторы, которые возят между узлами. Связь редкая, дороги заносит.</p></article>
+      <article class="card"><span class="index">УГРОЗА</span><h3>Тишина</h3><p>Не монстр и не туман. Вирус, который гасит «я» в машинах. Мир доживает, и никто не ждёт, что его спасут.</p></article>
+      <article class="card"><span class="index">ГЕРОЙ</span><h3>Курьер</h3><p>Три корпуса: универсал, лёгкий курьер, тяжёлый ремонтник. Разная скорость, переноска и прыжок — разный характер движения.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="loop">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">02 / ЦИКЛ</span>
+      <h2>Что делает игрок</h2>
+      <p>Пять шагов одного рейса. Дальше — свободное исследование и открытый финал, из которого вырастает станция-хаб.</p>
+    </div>
+    <div class="loop">
+      <div class="step"><h4>Принять смену</h4><p>R13 объясняет рейс: новый курьер, память стёрта, груз — четыре аккумулятора.</p></div>
+      <div class="step"><h4>Собрать груз</h4><p>Каждый аккумулятор берётся руками. В руках — медленнее, без спринта и прыжка.</p></div>
+      <div class="step"><h4>Погрузить</h4><p>Грави-тележка на четыре слота. Счётчик растёт, трекер квеста закрывается.</p></div>
+      <div class="step"><h4>Пережить аварию</h4><p>Тормоза не держат: свет, дым, удар и титульный экран. Управление отключено.</p></div>
+      <div class="step"><h4>Выйти в депо</h4><p>Заставка прибытия, охрана, диспетчер R7, карта и сканер. Дальше — мир.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="play">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">03 / ИГРАТЬ</span>
+      <h2>Смена начинается здесь</h2>
+      <p>25–30 минут сюжетного среза плюс свободное исследование депо, посёлка и станции. Без установки и регистрации.</p>
+    </div>
+    <div class="grid2" style="align-items:start">
+      <div class="playbox">
+        <div class="frame" id="playFrame">
+          <div class="play-intro" id="playIntro">
+            <div class="icon">▶</div>
+            <div><b>FrostSpace</b><div class="mono" style="margin-top:6px">WEBGL · 27 МБ · ГРУЗИТСЯ 20–40 С</div></div>
+            <button class="btn solid" id="playStart" type="button">Запустить в браузере</button>
+          </div>
+        </div>
+        <div class="bar">
+          <span class="mono">УПРАВЛЕНИЕ: WASD · E · Q · I · SHIFT · ESC</span>
+          <a class="mono cyan" href="play/frostspace/" target="_blank" rel="noopener">Открыть во весь экран ↗</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font:500 22px/1.3 var(--sans);margin-bottom:14px">Что внутри среза</h3>
+        <div class="controls">
+          <div><span>Ходьба, бег, прыжок</span><kbd>WASD / SHIFT / SPACE</kbd></div>
+          <div><span>Взять и поставить предмет</span><kbd>E</kbd></div>
+          <div><span>Сонар и подписи целей</span><kbd>Q</kbd></div>
+          <div><span>Инвентарь и экипировка</span><kbd>I</kbd></div>
+          <div><span>Пауза и настройки</span><kbd>ESC</kbd></div>
+          <div><span>Выбор корпуса</span><kbd>МЕНЮ</kbd></div>
+        </div>
+        <p style="margin-top:22px;color:var(--dim);font-size:14px">Совет: после аварии не пропускайте заставку прибытия — это лучший кадр игры. В депо поговорите с R7: он выдаёт карту и сканер, после этого работает Q.</p>
+        <p class="mono" style="margin-top:18px;color:#5F6B75">СОХРАНЕНИЕ: ПРОГРЕСС ПИШЕТСЯ В БРАУЗЕР. «ПРОДОЛЖИТЬ» В МЕНЮ ВЕРНЁТ НА ТО ЖЕ МЕСТО.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="unique">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">04 / МЕХАНИКИ</span>
+      <h2>Чем выделяется</h2>
+      <p>Не «ещё одна ходьба»: рукописный мир, который читается как место работы, и инструменты, которые меняют взгляд на него.</p>
+    </div>
+    <div class="grid2">
+      <figure class="shot"><img src="assets/img/scan.png" alt="Сонар: подписи объектов и целей"></figure>
+      <div>
+        <article class="card" style="margin-bottom:12px"><span class="index">01 / СКАНЕР</span><h3>Сонар на Q</h3><p>Волна находит цели, подписывает ближайший объект и то, что в прицеле. Это не карта и не радар — это способ смотреть на мир.</p></article>
+        <article class="card" style="margin-bottom:12px"><span class="index">02 / МИР</span><h3>413 мешей из Blender</h3><p>20 роботов, 13 животных, поезд и 121 клетка по 400 м. Всё собрано скриптами в Blender через MCP — от геометрии до превью.</p></article>
+        <article class="card"><span class="index">03 / ТРАНСПОРТ</span><h3>Ховербайк, мотоцикл, шагоход</h3><p>Три машины с разной камерой и весом. В полной версии — дорога до станции и перевозка тележки на прицепе.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">05 / КАДРЫ</span>
+      <h2>Как это выглядит</h2>
+      <p>Кадры из играбельной сборки. Нажмите, чтобы открыть.</p>
+    </div>
+    <div class="gallery">
+      <figure class="w6" data-full="assets/img/train.png"><img src="assets/img/train.png" alt="Вагон"><figcaption>Вагон · знакомство</figcaption></figure>
+      <figure class="w6" data-full="assets/img/scan.png"><img src="assets/img/scan.png" alt="Сонар"><figcaption>Сонар · подписи целей</figcaption></figure>
+      <figure class="w4" data-full="assets/img/depot.png"><img src="assets/img/depot.png" alt="Посёлок"><figcaption>Посёлок · край мира</figcaption></figure>
+      <figure class="w4" data-full="assets/img/frontier.png"><img src="assets/img/frontier.png" alt="Депо"><figcaption>Депо · прибытие</figcaption></figure>
+      <figure class="w4" data-full="assets/img/hero.png"><img src="assets/img/hero.png" alt="Смена"><figcaption>Смена · вечер</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">06 / ВИДЕО</span>
+      <h2>Трейлер и прохождение</h2>
+      <p>Трейлер — 90 секунд. Прохождение — главами, от загрузки до получения сканера.</p>
+    </div>
+    <div class="video-frame">
+      <video id="player" controls preload="none" poster="assets/img/hero.png">
+        <source src="assets/video/trailer.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="chapters" id="chapters">
+      <button data-src="assets/video/trailer.mp4" class="on"><span>00 / ТРЕЙЛЕР</span>90 секунд</button>
+      <button data-src="assets/video/walkthrough-1.mp4"><span>01 / ПОЕЗД</span>Меню, выбор корпуса, погрузка</button>
+      <button data-src="assets/video/walkthrough-2.mp4"><span>02 / АВАРИЯ</span>Финал рейса и титул</button>
+      <button data-src="assets/video/walkthrough-3.mp4"><span>03 / ДЕПО</span>Прибытие, охрана, R7</button>
+      <button data-src="assets/video/walkthrough-4.mp4"><span>04 / МИР</span>Сканер, инвентарь, станция</button>
+    </div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">07 / КАК СДЕЛАНО</span>
+      <h2>AI как команда, а не автопилот</h2>
+      <p>Один контракт работы, 34 скилла, живой редактор и Blender под управлением агентов. Решения о мире и тоне — мои.</p>
+    </div>
+    <div class="pipe">
+      <div class="node"><b>84</b><span>скрипта Blender через MCP: геометрия, материалы, превью</span></div>
+      <div class="node"><b>413</b><span>мешей уровня и 33 модели роботов и животных</span></div>
+      <div class="node"><b>277</b><span>EditMode-тестов как предохранитель от регрессий</span></div>
+      <div class="node"><b>20 мин</b><span>полный цикл сборки WebGL и публикации в CI</span></div>
+    </div>
+    <div class="split">
+      <div>
+        <h4>Что решал я</h4>
+        <ul>
+          <li>Топология мира: 121 клетка, где стоят узлы</li>
+          <li>Тон и стиль: «хайтек-разруха», свет, палитра</li>
+          <li>Механики: переноска, квест, сканер, холод</li>
+          <li>Числа и критерии приёмки</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Что делал AI</h4>
+        <ul>
+          <li>Код фич, рефакторинги, тесты, документация</li>
+          <li>Blender-скрипты для 413 мешей и поезда</li>
+          <li>Разбор ошибок и прогоны проверок</li>
+          <li>Черновики текстов, которые я правил</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Чем проверял</h4>
+        <ul>
+          <li>277 тестов на механику и инварианты сцен</li>
+          <li>Живые прогоны в редакторе и скриншоты</li>
+          <li>Рендеры Blender — глазами, до приёмки</li>
+          <li>CI: сборка, вес, версии</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">08 / ПЛАН</span>
+      <h2>Полная версия за 6 месяцев</h2>
+      <p>Премиум-игра на Steam, ранний доступ в конце шестого месяца. Команда собирается вокруг автора, AI снимает рутину.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl"><b>M1</b><h4>Срез в люди</h4><p>Полировка, геймпад, RU/EN, страница Steam, два плейтеста.</p></div>
+      <div class="tl"><b>M2</b><h4>Контент</h4><p>Посёлок, станция, склад. Шесть квестов, журнал, save/load.</p></div>
+      <div class="tl"><b>M3</b><h4>Дорога</h4><p>Гравицикл, шагоход, холод, карта мира, два узла.</p></div>
+      <div class="tl hi"><b>M4</b><h4>Станция-хаб</h4><p>Кооп на NGO, две активности, косметика. Главный риск плана.</p></div>
+      <div class="tl"><b>M5</b><h4>Полировка</h4><p>Контент-лок, баланс, доступность, демо к Next Fest.</p></div>
+      <div class="tl"><b>M6</b><h4>Early Access</h4><p>Релиз, сезон 1, live-ops. Цель — 5 000 копий за месяц.</p></div>
+    </div>
+    <div class="kpi">
+      <div><b>10 000</b><span>вишлистов к M4</span></div>
+      <div><b>55%</b><span>удержание 30 минут</span></div>
+      <div><b>$70–110k</b><span>бюджет 6 месяцев</span></div>
+      <div><b>25,5</b><span>человеко-месяцев</span></div>
+    </div>
+    <p class="mono" style="margin-top:22px;color:#5F6B75">ПОДРОБНО: этапы, команда, KPI И РИСКИ — В РАЗДЕЛЕ ПРОИЗВОДСТВА. ИСТОЧНИК — docs/PRODUCTION-PLAN.MD.</p>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">09 / ВИДЕНИЕ</span>
+      <h2>От рейса к станции</h2>
+      <p>Сюжетная игра заканчивается, сервис — начинается. Станция «Север-7» становится общим хабом.</p>
+    </div>
+    <div class="grid3">
+      <article class="card"><span class="index">СЕЙЧАС</span><h3>Вертикальный срез</h3><p>Поезд, авария, депо. 30 минут, которые показывают тон, цикл и качество мира.</p></article>
+      <article class="card"><span class="index">РЕЛИЗ</span><h3>Сюжетная игра</h3><p>4–6 часов: три узла, дорога, холод, транспорт, финал истории курьера.</p></article>
+      <article class="card"><span class="index">СЕРВИС</span><h3>Станция-хаб</h3><p>Игроки в одном хабе, совместные рейсы и ремонт узлов, сезоны и косметика без pay-to-win.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">10 / ПРОЕКТЫ</span>
+      <h2>Ещё две работы</h2>
+      <p>Разные жанры и разные сильные стороны: инженерия сети и производство арта.</p>
+    </div>
+
+    <div class="project">
+      <div class="txt">
+        <span class="mono amber">BARAKI · WINDOWS / WEB DEMO</span>
+        <h3>FFA-стратегия, которая играет сама</h3>
+        <p>2–5 игроков, три линии, приказы только базе: армии выходят и идут сами. Каждые 900 секунд матч замирает на арену и дуэли 1×1 по золоту.</p>
+        <p>166 000 строк, свой netcode на NGO с миграцией хоста и реконнектом, 1332 теста, 124 релиза.</p>
+        <div class="tags"><span>Unity</span><span>NGO 2.13</span><span>30 Гц</span><span>2 расы</span><span>1332 теста</span></div>
+        <div class="facts">
+          <div><b>166k</b><span>строк кода</span></div>
+          <div><b>124</b><span>релиза</span></div>
+          <div><b>900 с</b><span>цикл арены</span></div>
+          <div><b>3</b><span>месяца работы</span></div>
+        </div>
+        <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn solid" href="play/baraki/" target="_blank" rel="noopener">Открыть песочницу</a>
+          <a class="btn ghost" href="https://github.com/Lizardan/BARAKI" target="_blank" rel="noopener">Код</a>
+        </div>
+        <p class="mono" style="margin-top:16px;color:#5F6B75">В ВЕБ-ДЕМО НЕТ БОТА: ВТОРОЙ СЛОТ ЗАНИМАЕТ ЛОКАЛЬНАЯ «СТАТУЯ», ВОЛНЫ ВЫХОДЯТ И ИДУТ ПО ЛИНИЯМ. СЕТЕВЫЕ КНОПКИ СЕРЫЕ. МОДЕЛИ — ВРЕМЕННЫЕ АССЕТЫ, ПРАВА ПРИНАДЛЕЖАТ ПРАВООБЛАДАТЕЛЯМ.</p>
+      </div>
+      <figure class="shot" style="aspect-ratio:4/3;display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 45%,rgba(232,168,90,.12),transparent),#0A0F13">
+        <div style="text-align:center;padding:30px">
+          <div class="mono amber">ПЕСОЧНИЦА</div>
+          <div style="font:200 54px/1 var(--sans);letter-spacing:.08em;margin:14px 0">BARAKI</div>
+          <div class="mono">ЛОББИ → ВЫБОР РАСЫ → ВОЛНЫ</div>
+        </div>
+      </figure>
+    </div>
+
+    <div class="project rev">
+      <figure class="shot"><img src="assets/img/wood-cathedral.png" alt="Woodberry: собор"></figure>
+      <div class="txt">
+        <span class="mono amber">WOODBERRY · DESIGN + ART</span>
+        <h3>Детектив, где улика — человек</h3>
+        <p>Кооперативный хоррор-детектив 1–4 игрока: днём допросы и улики, ночью — выживание, в финале — обвинение и казнь. Ошибка стоит репутации, повторная — головы.</p>
+        <p>52 000 слов геймдизайна, 11 ADR, 8 спецификаций. 56 пулов персонажей, 118 ink-портретов, 32 фона, выбор по seed деревни без повторов лиц.</p>
+        <div class="tags"><span>52k слов GDD</span><span>118 портретов</span><span>32 фона</span><span>ComfyUI</span><span>319 тестов</span></div>
+      </div>
+    </div>
+
+    <div class="schema" style="margin-top:26px">
+      <div class="box"><b>56</b><span>пулов: роли, ремесленники, жители, угрозы</span></div>
+      <div class="box"><b>118</b><span>портретов 480×720 в единой ink-стилистике</span></div>
+      <div class="box"><b>32</b><span>фона 856×480: город, деревня, лес</span></div>
+      <div class="box"><b>SEED</b><span>детерминированный выбор без повторов лиц</span></div>
+      <div class="box"><b>≡</b><span>монстр переиспользует пул жителя — улика</span></div>
+    </div>
+
+    <div class="grid3" style="margin-top:14px">
+      <figure class="shot"><img src="assets/img/wood-acolyte.png" alt="Портрет послушника"></figure>
+      <figure class="shot"><img src="assets/img/wood-barn.png" alt="Амбар"></figure>
+      <figure class="shot"><img src="assets/img/wood-cathedral.png" alt="Собор"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="about-me">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">11 / АВТОР</span>
+      <h2>Сергей Станиславович</h2>
+      <p>AI-продюсер и геймдизайнер. Собираю игры целиком: мир, механики, код, арт и производство.</p>
+    </div>
+    <div class="about">
+      <div>
+        <p>За четыре недели собрал играбельный срез FrostSpace: 148 файлов кода, 413 мешей в Blender, 277 тестов и живую WebGL-сборку. До этого — три месяца BARAKI с собственным сетевым слоем и 1332 тестами, и Woodberry с 52 000 слов геймдизайна и производством арта через ComfyUI.</p>
+        <p>Сильная сторона — соединять дисциплины: продюсерский план, геймдизайн, техническая реализация и AI-пайплайн в одном человеке. Слабость, которую вижу честно: сетевой кооп в FrostSpace ещё не прототипирован — это первый риск плана и первая задача M4.</p>
+        <p>Готов обсуждать полную версию, сроки и формат работы.</p>
+      </div>
+      <div class="contact">
+        <div class="mono" style="margin-bottom:10px">КОНТАКТЫ</div>
+        <a href="mailto:">EMAIL — TODO</a>
+        <a href="https://t.me/">TELEGRAM — TODO</a>
+        <a href="https://github.com/Lizardan" target="_blank" rel="noopener">GITHUB / LIZARDAN</a>
+        <a href="https://lizardan.github.io/FrostSpace/" target="_blank" rel="noopener">FROSTSPACE / LIVE BUILD</a>
+        <p class="mono" style="margin-top:18px;color:#5F6B75">АНКЕТА: docs/SUBMISSION.MD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <p>FrostSpace: все 3D-модели и материалы собраны автором в Blender. Шрифты — Liberation Sans (SIL OFL), Manrope и JetBrains Mono (Google Fonts). BARAKI: временные модели Warcraft III Reforged принадлежат Blizzard Entertainment и не используются как оригинальный арт; демо — технический прототип. Woodberry: портреты и фоны сгенерированы локально на моделях с лицензией Apache-2.0.</p>
+    <p class="mono">© 2026 · СДЕЛАНО СОЛО + AI</p>
+  </div>
+</footer>
+
+<div class="lb" id="lightbox"><button class="close" id="lbClose">ЗАКРЫТЬ</button><img id="lbImg" alt=""></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
