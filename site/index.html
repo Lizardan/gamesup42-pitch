@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/wood.css">
 </head>
 <body>
 <canvas id="snow" aria-hidden="true"></canvas>
@@ -317,7 +318,8 @@
         <h3>Детектив, где улика — человек</h3>
         <p>Кооперативный хоррор-детектив 1–4 игрока: днём допросы и улики, ночью — выживание, в финале — обвинение и казнь. Ошибка стоит репутации, повторная — головы.</p>
         <p>52 000 слов геймдизайна, 11 ADR, 8 спецификаций. 56 пулов персонажей, 118 ink-портретов, 32 фона, выбор по seed деревни без повторов лиц.</p>
-        <div class="tags"><span>52k слов GDD</span><span>118 портретов</span><span>32 фона</span><span>ComfyUI</span><span>319 тестов</span></div>
+        <p>Один и тот же аколют встречается у амбара и у собора: фон, свет и первые реплики зависят от места встречи.</p>
+        <div class="tags"><span>52k слов GDD</span><span>118 портретов</span><span>32 фона</span><span>локальный ИИ</span><span>319 тестов</span></div>
       </div>
     </div>
 
@@ -327,6 +329,34 @@
       <div class="box"><b>32</b><span>фона 856×480: город, деревня, лес</span></div>
       <div class="box"><b>SEED</b><span>детерминированный выбор без повторов лиц</span></div>
       <div class="box"><b>≡</b><span>монстр переиспользует пул жителя — улика</span></div>
+    </div>
+
+    <div class="wood-note">
+      <div>
+        <span class="mono amber">СИЛЬНАЯ СТОРОНА · ВСТРЕЧИ</span>
+        <h4>Один персонаж — разные сцены</h4>
+        <p>Аколют встречается у амбара и у собора: фон, свет и первые реплики зависят от места. Лицо и роль берутся из общего пула, поэтому деревня не повторяет встречи. Портреты и фоны сделаны локальной моделью ИИ, компоновка сцен — тоже.</p>
+      </div>
+    </div>
+
+    <div class="wood-demo">
+      <div class="wood-stage" id="woodStage" data-place="barn">
+        <div class="wood-bg on" data-place="barn" style="background-image:url(assets/img/wood-barn.png)"></div>
+        <div class="wood-bg" data-place="cathedral" style="background-image:url(assets/img/wood-cathedral.png)"></div>
+        <div class="wood-shade"></div>
+        <img class="wood-hero" src="assets/img/wood-acolyte.png" alt="Аколют">
+        <div class="wood-place"><span class="mono">МЕСТО ВСТРЕЧИ</span><b id="woodPlace">Амбар · ночь</b></div>
+        <div class="wood-dlg">
+          <div class="wood-text" id="woodText">Аколют ждёт у амбара. В свете фонаря видно, как дрожат руки.</div>
+          <div class="wood-choices" id="woodChoices"></div>
+          <div class="wood-meta"><span class="mono">ДОВЕРИЕ</span><div class="wood-bar"><i id="woodTrust"></i></div></div>
+        </div>
+      </div>
+      <div class="wood-controls">
+        <button class="wood-tab on" data-place="barn">Амбар</button>
+        <button class="wood-tab" data-place="cathedral">Собор</button>
+        <span class="mono wood-hint">выбери место — фон, свет и реплики сменятся</span>
+      </div>
     </div>
 
     <div class="grid3" style="margin-top:14px">
@@ -364,12 +394,13 @@
 
 <footer>
   <div class="wrap foot">
-    <p>FrostSpace: все 3D-модели и материалы собраны автором в Blender. Шрифты — Liberation Sans (SIL OFL), Manrope и JetBrains Mono (Google Fonts). BARAKI: временные модели Warcraft III Reforged принадлежат Blizzard Entertainment и не используются как оригинальный арт; демо — технический прототип. Woodberry: портреты и фоны сгенерированы локально на моделях с лицензией Apache-2.0.</p>
+    <p>FrostSpace: все 3D-модели и материалы собраны автором в Blender через собственный ИИ-конвейер и MCP — роботы, животные, поезд, 413 мешей. Шрифты — Liberation Sans (SIL OFL), Manrope и JetBrains Mono (Google Fonts). BARAKI: временные модели Warcraft III Reforged принадлежат Blizzard Entertainment и не используются как оригинальный арт; демо — технический прототип. Woodberry: портреты и фоны сгенерированы локально на моделях с лицензией Apache-2.0, компоновка сцен встреч — тоже локальная модель.</p>
     <p class="mono">© 2026 · СДЕЛАНО СОЛО + AI</p>
   </div>
 </footer>
 
 <div class="lb" id="lightbox"><button class="close" id="lbClose">ЗАКРЫТЬ</button><img id="lbImg" alt=""></div>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/wood.js"></script>
 </body>
 </html>
