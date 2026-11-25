@@ -26,12 +26,14 @@ const shot = async (n) => {
 
 await page.goto('http://127.0.0.1:8099/play/frostspace/', { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(55000);
+if (isVideo) await page.waitForTimeout(8000);
 await shot('new-menu');
 const startAt = isVideo ? [200, 450] : [200, 540];
 const confirmAt = isVideo ? [1340, 820] : [1608, 984];
 await page.mouse.click(960, 540); await page.waitForTimeout(500);
 await page.mouse.click(startAt[0], startAt[1]);  await page.waitForTimeout(26000);
 await shot('new-char');
+if (isVideo) await page.waitForTimeout(8000);
 await page.mouse.click(confirmAt[0], confirmAt[1]); await page.waitForTimeout(30000);
 await shot('new-train');
 if (isVideo) await page.waitForTimeout(22000);

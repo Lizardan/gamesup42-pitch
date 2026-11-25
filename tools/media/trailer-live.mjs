@@ -17,12 +17,11 @@ const webm = fs.readdirSync(path.join(work, 'rec-new'))
 
 const card1 = path.join(work, 'card1.png');
 const card2 = path.join(work, 'card2.png');
-const charShot = path.join(root, 'site/assets/img/char.png');
 
-const total = 50.5;
+const total = 51.5;
 const filter = [
-  `[0:v]scale=1600:900,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=10.5:d=0.5[v0]`,
-  `[1:v]scale=1600:900,fps=25,trim=duration=3.5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.4,fade=t=out:st=3.1:d=0.4[v1]`,
+  `[0:v]scale=1600:900,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=9.5:d=0.5[v0]`,
+  `[1:v]scale=1600:900,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=5.5:d=0.5[v1]`,
   `[2:v]scale=1600:900,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=15.5:d=0.5[v2]`,
   `[3:v]scale=1600:900,fps=25,trim=duration=3.5,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.4,fade=t=out:st=3.1:d=0.4[v3]`,
   `[4:v]scale=1600:900,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=11.5:d=0.5[v4]`,
@@ -33,11 +32,11 @@ const filter = [
 
 execFileSync(ffmpeg, [
   '-y',
-  '-ss', '57', '-t', '11', '-i', webm,
-  '-loop', '1', '-t', '3.5', '-i', charShot,
-  '-ss', '100', '-t', '16', '-i', webm,
+  '-ss', '59', '-t', '10', '-i', webm,
+  '-ss', '86', '-t', '6', '-i', webm,
+  '-ss', '110', '-t', '16', '-i', webm,
   '-loop', '1', '-t', '3.5', '-i', card1,
-  '-ss', '125', '-t', '12', '-i', webm,
+  '-ss', '135', '-t', '12', '-i', webm,
   '-loop', '1', '-t', '4', '-i', card2,
   '-i', music,
   '-filter_complex', filter,
