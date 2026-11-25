@@ -3,3 +3,4 @@ site/play/
 docs/design/*.png
 *.log
 .DS_Store
+docs/design/rec-*/
