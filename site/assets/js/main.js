@@ -96,7 +96,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   if (!player || !chapters) return;
   chapters.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
-    if (!btn) return;
+    if (!btn || btn.disabled || !btn.dataset.src) return;
     chapters.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === btn));
     player.src = btn.dataset.src;
     player.load();
