@@ -8,9 +8,17 @@
 
 ## Скриншоты FrostSpace
 
-`node tools/capture/fs-menu.mjs` — открывает зеркало сборки в 1920×1080, ждёт инициализацию Unity (~45 с) и снимает меню. Результат: `docs/design/fs-menu.png`, он же `site/assets/img/hero.png`.
+Новая сборка (2026-11-26) снята локально: `node tools/capture/fs-menu.mjs` и `MODE=stills node tools/capture/fs-new.mjs`. Результаты: `docs/design/new-menu.png` (1920×1080, он же `site/assets/img/hero.png`), `new-char.png` (`site/assets/img/char.png`), `new-train.png` и `new-train2.png` (`site/assets/img/train.png`).
 
-Кадры для галереи взяты из проекта: `Assets/Screenshots/train_play.png`, `Captures/scan_wave_one.png`, `Captures/scan_wave_mid.png`, `Assets/Screenshots/final_depot.png`, `Assets/Screenshots/final_settlement.png`.
+Старые кадры `scan.png`, `depot.png`, `frontier.png` оставлены в галерее как дополнительные места; видео целиком переснято на новой сборке.
+
+## Сборка FrostSpace
+
+Локально: `Unity.exe -quit -batchmode -projectPath "F:/Unity Projects/FrostSpace" -buildTarget WebGL -executeMethod FrostSpace.Editor.BuildWebGL.PerformBuild -logFile "F:/Unity Projects/FrostSpace/Logs/webgl-local.log"`.
+
+Результат: 30 МБ, 7 мин 38 с, `Builds/webgl-result.json` — `Succeeded`.
+
+Причина локальной сборки: game-ci не имеет образа `unityci/editor:ubuntu-6000.6.10f1-webgl-3`, поэтому облачный workflow падает до старта Unity. Сборка публикуется release-ассетом `webgl-latest/frostspace-webgl.zip`; `tools/deploy/fetch-builds.mjs` забирает её оттуда, а при отсутствии — падает обратно на живой Pages.
 
 ## Скриншоты секций лендинга
 
@@ -41,6 +49,6 @@
 
 ## Видео
 
-`node tools/capture/record.mjs` — Playwright записывает страницу в webm (25 fps), затем `node tools/media/build-media.mjs` режет и собирает H.264 через ffmpeg-static. Длинные главы — по 15–25 МБ.
+`MODE=video node tools/capture/fs-new.mjs` — Playwright записывает живой проход новой сборки: меню, выбор корпуса, поезд (webm 1600×900, 25 fps). Затем `node tools/media/trailer-live.mjs` собирает трейлер 50 с из реальных клипов: меню 57–68 с, кадр выбора корпуса, поезд 100–116 с, карточка, поезд 125–137 с, финальная карточка; музыка — тема игры, фейды в чёрный. Отдельный клип поезда 100–130 с идёт в раздел «живой геймплей».
 
-Статус на 2026-11-25: запись меню и перехода в игру проверена; полное прохождение требует ручной сессии из-за таймингов заставок.
+Статус на 2026-11-26: трейлер и клип поезда пересняты на последней сборке. Полное прохождение с диалогом и аварией требует ручной сессии: луч диалога идёт из центра камеры, автоматическому вводу нужно точное наведение.
