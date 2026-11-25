@@ -9,6 +9,7 @@ const playDir = path.join(root, 'site/play');
 const skipBaraki = process.argv.includes('--skip-baraki');
 
 const FROSTSPACE_BASE = 'https://lizardan.github.io/FrostSpace/';
+const FROSTSPACE_ZIP = 'https://github.com/Lizardan/FrostSpace/releases/download/webgl-latest/frostspace-webgl.zip';
 const FROSTSPACE_FILES = [
   'index.html',
   'Build/WebGL.loader.js',
@@ -27,6 +28,16 @@ async function download(url) {
 async function mirrorFrostSpace() {
   const out = path.join(playDir, 'frostspace');
   await fsp.rm(out, { recursive: true, force: true });
+
+  try {
+    const buf = await download(FROSTSPACE_ZIP);
+    new AdmZip(buf).extractAllTo(out, true);
+    console.log(`FrostSpace: ${(buf.length / 1048576).toFixed(1)} MB zip extracted (latest build)`);
+    return;
+  } catch (error) {
+    console.warn(`FrostSpace release asset unavailable (${error.message}); falling back to live build`);
+  }
+
   let total = 0;
   for (const file of FROSTSPACE_FILES) {
     const buf = await download(FROSTSPACE_BASE + file);
@@ -36,7 +47,7 @@ async function mirrorFrostSpace() {
     total += buf.length;
     console.log(`frostspace/${file} ${(buf.length / 1048576).toFixed(2)} MB`);
   }
-  console.log(`FrostSpace: ${(total / 1048576).toFixed(1)} MB`);
+  console.log(`FrostSpace: ${(total / 1048576).toFixed(1)} MB (live build)`);
 }
 
 async function mirrorBaraki() {
