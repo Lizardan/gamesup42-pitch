@@ -25,6 +25,6 @@
 
 ## Что приложить дополнительно
 
-- Второй прототип: BARAKI, веб-демо — https://lizardan.github.io/gamesup42-pitch/play/baraki/ (лаунчер, меню, лобби и старт матча; экран выбора расы в вебе дорабатывается). Windows-релизы — https://github.com/Lizardan/BARAKI/releases
+- Второй прототип: BARAKI, веб-демо — https://lizardan.github.io/gamesup42-pitch/play/baraki/ (сразу меню, лобби, локальное заполнение, старт матча и волны; выбор расы и бонусов автоматический). Windows-релизы — https://github.com/Lizardan/BARAKI/releases
 - Портфолио-раздел с Woodberry на ванпейджере.
 - Трейлер 42 секунды и живой геймплей поезда на ванпейджере.
