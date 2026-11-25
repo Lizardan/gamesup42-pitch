@@ -22,9 +22,18 @@
 
 ## BARAKI WebGL
 
-Сборка: `Unity.exe -quit -batchmode -projectPath "F:/Unity Projects/BARAKI" -buildTarget WebGL -executeMethod Game.Editor.WebGLCiBuild.Build -logFile "F:/Unity Projects/BARAKI/Logs/webgl-build.log"`.
+Сборка: `Unity.exe -quit -batchmode -projectPath "F:/Unity Projects/BARAKI" -buildTarget WebGL -executeMethod Game.Editor.WebGLCiBuild.Build -logFile "F:/Unity Projects/BARAKI/Logs/webgl-build9.log"`.
 
-Ручной прогон: 2026-11-25, локально, вне CI. Выход: `F:\Unity Projects\BARAKI\build\WebGL`.
+Что включает build-метод и веб-режим:
+- локальный авторитет (`MatchSessionService.UseLocalDev` в `MatchSessionBootstrap`);
+- пропуск апдейтера и UGS, прямой вход в главное меню без лаунчера;
+- авто-подтверждение выбора расы, скрытие оверлеев бонусов и порядка героев (авто-бонус уже применён);
+- сжатие командных текстур для WebGL: 512 px, ASTC 8×8, только платформенный оверрайд;
+- stripping движка, exception support = None, Brotli + fallback.
+
+Итог: 98,4 МБ данных, проходит лимит GitHub Pages. Сборка публикуется release-ассетом `webgl-demo/baraki-webgl.zip`; сайт забирает её в `site/play/baraki/`.
+
+Полноэкранный шаблон: `index.html` собирается из шаблона FrostSpace скриптом `tools/deploy/publish-baraki.mjs` с подстановкой имён файлов BARAKI (без пересборки).
 
 ## Зеркало сборок
 
