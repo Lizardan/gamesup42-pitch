@@ -6,7 +6,7 @@
 
 ## Проекты
 - FrostSpace (последняя сборка): https://lizardan.github.io/gamesup42-pitch/play/frostspace/
-- FrostSpace (старый живой Pages, сборка 09.11): https://lizardan.github.io/FrostSpace/
+- FrostSpace (живой Pages, та же сборка): https://lizardan.github.io/FrostSpace/
 - FrostSpace (код): https://github.com/Lizardan/FrostSpace
 - BARAKI (код, релизы): https://github.com/Lizardan/BARAKI
 - Woodberry (код): https://github.com/Lizardan/Woodberry
