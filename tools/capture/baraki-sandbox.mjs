@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const browser = await chromium.launch({ headless: true, args: ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'] });
 const page = await browser.newPage({ viewport: { width: 1600, height: 900 } });
-await page.goto('http://127.0.0.1:8099/play/baraki/', { waitUntil: 'domcontentloaded' });
+await page.goto(process.env.GAME_URL || 'http://127.0.0.1:8099/play/baraki/', { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(55000);
 await page.mouse.click(1322, 771); await page.waitForTimeout(6000);   // В БОЙ
 await page.mouse.click(800, 651);  await page.waitForTimeout(2500);   // fill (auto-ready)
