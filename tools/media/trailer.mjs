@@ -10,7 +10,7 @@ const img = (n) => path.join(root, 'site/assets/img', n);
 const work = path.join(root, 'docs/design');
 const out = path.join(root, 'site/assets/video/trailer.mp4');
 const music = 'F:/Unity Projects/FrostSpace/Assets/_Project/Content/Audio/Resources/Music/Music_FrostSpaceTheme.mp3';
-const ffmpeg = (await import('ffmpeg-static')).default;
+const ffmpeg = path.join(root, 'node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe');
 
 fs.mkdirSync(path.dirname(out), { recursive: true });
 
@@ -50,22 +50,15 @@ const shots = [
 
 const per = 6, fade = 0.8;
 const inputs = shots.flatMap((s) => ['-loop', '1', '-t', String(per), '-i', s]);
-const scaled = shots.map((_, i) => `[${i}:v]scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,fps=25,trim=duration=${per},setpts=PTS-STARTPTS[v${i}]`);
-let prev = 'v0';
-let chain = scaled.join(';');
-for (let i = 1; i < shots.length; i++) {
-  const off = (per - fade) * i;
-  const name = `x${i}`;
-  chain += `;[${prev}][v${i}]xfade=transition=fade:duration=${fade}:offset=${off.toFixed(2)}[${name}]`;
-  prev = name;
-}
-const total = per * shots.length - fade * (shots.length - 1);
+const scaled = shots.map((_, i) => `[${i}:v]scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,fps=25,trim=duration=${per},setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=${(per - 0.5).toFixed(1)}:d=0.5[v${i}]`);
+const chain = scaled.join(';') + ';' + shots.map((_, i) => `[v${i}]`).join('') + `concat=n=${shots.length}:v=1:a=0[vout]`;
+const total = per * shots.length;
 
 const args = [
   '-y', ...inputs,
   '-stream_loop', '-1', '-i', music,
   '-filter_complex', chain,
-  '-map', `[${prev}]`, '-map', `${shots.length}:a`,
+  '-map', '[vout]', '-map', `${shots.length}:a`,
   '-t', String(total),
   '-af', `afade=t=in:st=0:d=1.5,afade=t=out:st=${(total - 4).toFixed(1)}:d=4,volume=0.85`,
   '-c:v', 'libx264', '-preset', 'medium', '-crf', '25', '-pix_fmt', 'yuv420p',
