@@ -21,4 +21,4 @@
 - BARAKI: `F:\Unity Projects\BARAKI`
 - Woodberry: `F:\Unity Projects\Woodberry`
 - Unity: `F:\Unity\Editor\6000.6.10f1`
-- Проект презентации: `C:\Users\Lizardan\Documents\Qoder\2026-11-25\1c455b3d\gamesup42-pitch`
+- Проект презентации: `F:\gamesup42-pitch`
