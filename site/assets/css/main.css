@@ -150,6 +150,8 @@ section { padding: 96px 0; border-top: 1px solid rgba(255,255,255,.05); }
 .project h3 { font: 300 clamp(28px, 3.4vw, 42px)/1.1 var(--sans); margin-bottom: 10px; }
 .project .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 20px; }
 .project .tags span { font: 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); border: 1px solid var(--line); padding: 7px 9px; }
+.card .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 0; }
+.card .tags span { font: 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); border: 1px solid var(--line); padding: 7px 9px; }
 .project p { color: var(--dim); font-size: 15px; margin-bottom: 12px; }
 .project .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 18px; }
 .project .facts div { border-left: 1px solid var(--line); padding-left: 12px; }

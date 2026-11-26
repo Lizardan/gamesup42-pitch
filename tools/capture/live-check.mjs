@@ -7,7 +7,7 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await page.goto('https://lizardan.github.io/gamesup42-pitch/', { waitUntil: 'domcontentloaded', timeout: 60000 });
 await page.waitForTimeout(2500);
 await page.evaluate(() => document.getElementById('money').scrollIntoView({ block: 'center' }));
-await page.waitForTimeout(1200);
+await page.waitForTimeout(3200);
 await page.screenshot({ path: path.join(root, 'docs/design/money-live.png') });
 await page.evaluate(() => document.getElementById('play').scrollIntoView({ block: 'center' }));
 await page.waitForTimeout(800);
