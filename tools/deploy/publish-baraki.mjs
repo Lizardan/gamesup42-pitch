@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import AdmZip from 'adm-zip';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const buildDir = process.env.BARAKI_BUILD || 'F:/Unity Projects/BARAKI/build/WebGL';
@@ -24,9 +25,20 @@ html = html
 fs.writeFileSync(path.join(buildDir, 'index.html'), html);
 
 const zip = path.join(buildDir, '..', 'baraki-webgl.zip');
-execFileSync('powershell', ['-NoProfile', '-Command',
-  `Compress-Archive -Path '${buildDir.replaceAll('/', '\\')}\\*' -DestinationPath '${zip.replaceAll('/', '\\')}' -Force`,
-], { stdio: 'inherit' });
+const archive = new AdmZip();
+const addDir = (dir, prefix) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    const name = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      addDir(full, name);
+    } else {
+      archive.addFile(name, fs.readFileSync(full));
+    }
+  }
+};
+addDir(buildDir, '');
+fs.writeFileSync(zip, archive.toBuffer());
 
 const data = fs.statSync(path.join(buildDir, 'Build/WebGL.data.unityweb')).size;
 const zipSize = fs.statSync(zip).size;

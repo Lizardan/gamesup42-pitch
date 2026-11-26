@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/main.css?v=2">
+<link rel="stylesheet" href="assets/css/main.css?v=3">
 <link rel="stylesheet" href="assets/css/wood.css">
 </head>
 <body>
@@ -356,6 +356,24 @@
       </figure>
     </div>
 
+    <div class="studio">
+      <div class="studio__txt">
+        <span class="mono amber">СИЛЬНАЯ СТОРОНА · ИНСТРУМЕНТЫ</span>
+        <h4>BARAKI Studio — свой цех контента</h4>
+        <p>Отдельное окно редактора вместо ручной правки ассетов: слева — способности по классам (Caster, King, Titan, Paladin, Priest, Melee, Ranged, Siege), в центре — живая сцена с моделью и целью, справа — палитра из 118 VFX-префабов. Карточка способности задаёт префаб, масштаб, радиус, якорь (на себе, под собой, на цели, под целью) и поворот эффекта; тут же проигрываются Stand, Walk, Attack, Cast и Death.</p>
+        <p>Вкладка «Модели юнитов» ведёт каталог из 21 слота (11 базовых и 10 бонусных) для каждой расы: выбор префаба, готовый портрет и подгонка размера. Всё пишется прямо в ассеты игры — без ручной разметки и дублей.</p>
+        <div class="tags"><span>свой editor-инструмент</span><span>21 слот моделей</span><span>118 VFX</span><span>превью анимаций</span></div>
+        <div class="schema" style="grid-template-columns:repeat(2,1fr);margin-top:18px">
+          <div class="box"><b>118</b><span>VFX-префабов в палитре</span></div>
+          <div class="box"><b>21</b><span>слот моделей на расу</span></div>
+        </div>
+      </div>
+      <div class="studio__shots">
+        <figure class="shot" data-full="assets/img/baraki-studio-king.webp"><img loading="lazy" decoding="async" src="assets/img/baraki-studio-king.webp" alt="BARAKI Studio: способность Strike у King"><figcaption>Способность Strike: превью, VFX и якорь эффекта</figcaption></figure>
+        <figure class="shot" data-full="assets/img/baraki-studio-titan.webp"><img loading="lazy" decoding="async" src="assets/img/baraki-studio-titan.webp" alt="BARAKI Studio: способность Slam у Titan"><figcaption>Slam: палитра эффектов, масштаб и радиус</figcaption></figure>
+      </div>
+    </div>
+
     <div class="project rev">
       <figure class="shot"><img loading="lazy" decoding="async" src="assets/img/wood-cathedral.webp" alt="Woodberry: собор"></figure>
       <div class="txt">
@@ -381,6 +399,25 @@
         <span class="mono amber">СИЛЬНАЯ СТОРОНА · ВСТРЕЧИ</span>
         <h4>Один персонаж — разные сцены</h4>
         <p>Аколют встречается у амбара и у собора: фон, свет и первые реплики зависят от места. Лицо и роль берутся из общего пула, поэтому деревня не повторяет встречи. Портреты и фоны сделаны локальной моделью ИИ, компоновка сцен — тоже.</p>
+      </div>
+    </div>
+
+    <div class="studio">
+      <div class="studio__txt">
+        <span class="mono amber">СИЛЬНАЯ СТОРОНА · АРТ-СТУДИЯ</span>
+        <h4>Woodberry Art Studio — фабрика кадров</h4>
+        <p>Внутри Unity — окно для новых генераций фонов и персонажей: каталог мест и пулов, очередь заданий, прогресс по кадрам, ревью с решением «принять в проект» или «отправить на перегенерацию». Драйвер локальной модели окно поднимает само, команды и события идут через файлы, а принятые кадры сразу импортируются в стандарт: портрет 480×720, фон 856×480.</p>
+        <p>Поэтому 118 портретов и 32 фона держат единую ink-стилистику, а новая сцена или персонаж — это несколько минут в студии, а не новый пайплайн.</p>
+        <div class="tags"><span>локальный ИИ</span><span>очередь задач</span><span>ревью кадров</span><span>480×720 / 856×480</span></div>
+      </div>
+      <div class="studio__side">
+        <div class="schema" style="grid-template-columns:1fr 1fr">
+          <div class="box"><b>01</b><span>каталог мест, персонажей и пулов</span></div>
+          <div class="box"><b>02</b><span>очередь генерации с прогрессом</span></div>
+          <div class="box"><b>03</b><span>ревью: принять или перегенерировать</span></div>
+          <div class="box"><b>04</b><span>импорт в общий стиль проекта</span></div>
+        </div>
+        <figure class="shot"><img loading="lazy" decoding="async" src="assets/img/wood-barn.webp" alt="Кадр, принятый арт-студией Woodberry"></figure>
       </div>
     </div>
 

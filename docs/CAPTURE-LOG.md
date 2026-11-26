@@ -64,4 +64,14 @@
 - Mobile 390 / 768 / 1440 — проверено скриншотами.
 - Кадры галереи переведены в WebP q82: 5,7 → 0,8 МБ, lazy + `display=swap`.
 - BARAKI: 10-минутный сокс — скрипт `tools/capture/soak-baraki.mjs`, лог `docs/design/soak.log` (проверка «волны идут без падений»).
-- BARAKI 10-минутный сокс (2026-11-26): canvas загрузился на 71 с, матч стартовал на 99 с, страница жива через 10 минут, на кадре — бой юнитов, таймер 02:56, золото 678. В консоли — известные WebGL-логи (`Screen.mainWindowDisplayInfo`, `CapsuleCollider`/`CSMain` при High stripping); ядро матча работает. Лечение на будущее — `link.xml` с сохранением физических типов.
+- BARAKI 10-минутный сокс (2026-11-26): canvas загрузился на 71 с, матч стартовал на 99 с, страница жива через 10 минут, на кадре — бой юнитов, таймер 02:56, золото 678. После исправлений в консоли нет `CapsuleCollider` и `Kernel CSMain`; остаётся только безвредный `Screen.mainWindowDisplayInfo` на WebGL.
+- BARAKI после исправлений (2026-11-26, локальная сборка): окно «ВЫБОР РАСЫ» с полной кириллицей; клики по зданию логируются как `[WebGLDemo] pick hits=1 found=True target=True`, на экране появляется кольцо выбора и панель «Главное · НР 2000/2000»; у Древних `anim controller=Faceless_Melee stand=True walk=True attack=True`, в кадре юниты идут в динамичных позах. Скрипт проверки — `tools/capture/verify-baraki.mjs`.
+
+## Исправления WebGL-демо BARAKI (2026-11-26)
+
+- **Кириллица в окне выбора расы.** `RacePick.uss` не подключал шрифт, а в WebGL нет системного fallback: цифры рисовались, русские буквы пропадали. Добавлено правило `* { -unity-font: NotoSans.ttf }`, как в `Lobby.uss` и `Launcher.uss`.
+- **Клики по юнитам и зданиям.** `MatchPickMeshRaycast` отвергал попадание, если у меша выключен Read/Write (в плеере CPU-данных нет). Теперь при нечитаемом меше принимается попадание коллайдера (AABB).
+- **`CapsuleCollider` не существует.** Движок вырезал класс при High stripping, а он нужен `CreatePrimitive(Capsule)` (цветы арены, fallback-юниты). Добавлен `Assets/link.xml`: `UnityEngine.PhysicsModule` и `UnityEngine.AnimationModule` с `preserve="all"`.
+- **Compute-фог в WebGL.** `FogSimulation` вызывал `FindKernel("CSMain")` при неподдерживаемых compute-шейдерах. Добавлен guard `SystemInfo.supportsComputeShaders`.
+- **Диагностика анимации.** В WebGL-сборке при первом спавне роли пишется `[WebGLDemo] anim race=… role=… controller=… stand/walk/attack=true|false`; при отсутствии модели — `[SPAWN] fallback capsule`. По этим строкам проверяется, что аниматор и состояния есть у Древних.
+- **Скриншоты BARAKI Studio** для лендинга: `site/assets/img/baraki-studio-king.webp` и `baraki-studio-titan.webp` (из редактора, 1800 px, WebP q82).

@@ -158,6 +158,19 @@ section { padding: 96px 0; border-top: 1px solid rgba(255,255,255,.05); }
 .project .facts b { display: block; font: 500 19px/1 var(--sans); }
 .project .facts span { font: 10px/1 var(--mono); letter-spacing: .12em; color: var(--dim); text-transform: uppercase; }
 
+/* in-house tooling */
+.studio { display: grid; grid-template-columns: 1.02fr .98fr; gap: 26px; margin-top: 28px; padding: 26px; border: 1px solid var(--line); background: linear-gradient(120deg, rgba(14,19,24,.92), rgba(10,13,17,.55)); }
+.studio h4 { margin: 8px 0 10px; font: 600 clamp(21px, 2.4vw, 30px)/1.2 var(--sans); }
+.studio p { color: var(--dim); font-size: 14.5px; margin-bottom: 10px; }
+.studio .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.studio .tags span { font: 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); border: 1px solid var(--line); padding: 7px 9px; }
+.studio__shots { display: grid; gap: 12px; align-content: start; }
+.studio__shots figure { margin: 0; }
+.studio__shots .shot img { height: auto; display: block; }
+.studio__shots figcaption { font: 10px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); padding: 8px 2px 0; }
+.studio__side { display: grid; gap: 12px; align-content: start; }
+.studio__side .shot img { aspect-ratio: 16/9; object-fit: cover; }
+
 /* schema */
 .schema { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: stretch; }
 .schema .box { border: 1px solid rgba(255,255,255,.09); padding: 18px; background: rgba(14,19,24,.75); }
@@ -193,6 +206,7 @@ footer { padding: 46px 0 60px; border-top: 1px solid rgba(255,255,255,.07); }
   .hero .wrap, .grid2, .about, .project, .project.rev { grid-template-columns: 1fr; }
   .hero .reticle { display: none; }
   .grid3, .pipe, .kpi, .chapters { grid-template-columns: repeat(2, 1fr); }
+  .studio { grid-template-columns: 1fr; padding: 20px; }
   .loop { grid-template-columns: 1fr; }
   .loop .step::after { display: none; }
   .timeline { grid-template-columns: repeat(2, 1fr); gap: 18px; }
