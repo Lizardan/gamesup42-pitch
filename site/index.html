@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/main.css?v=3">
+<link rel="stylesheet" href="assets/css/main.css?v=4">
 <link rel="stylesheet" href="assets/css/wood.css">
 </head>
 <body>
@@ -36,7 +36,11 @@
 </nav>
 
 <header class="hero" id="top">
-  <img class="hero-bg" src="assets/img/hero.webp" alt="FrostSpace: меню игры, депо в снегу">
+  <div class="hero-media" aria-hidden="true">
+    <img class="hero-slide on" src="assets/img/r7.webp" alt="">
+    <img class="hero-slide" src="assets/img/mechanics.webp" alt="" loading="lazy">
+    <img class="hero-slide" src="assets/img/train.webp" alt="" loading="lazy">
+  </div>
   <div class="scanlines"></div>
   <div class="wrap">
     <div>
@@ -52,17 +56,27 @@
         <div><b>121</b><span class="mono">клетка мира</span></div>
         <div><b>413</b><span class="mono">мешей Blender</span></div>
         <div><b>277</b><span class="mono">тестов</span></div>
+        <div><b>3</b><span class="mono">проекта</span></div>
       </div>
     </div>
-    <div class="reticle" aria-hidden="true">
-      <i></i><i></i><i></i><i></i>
-      <div class="tag"><b>R13</b><span>PROSPECTOR · 4.0 M</span></div>
-    </div>
+    <aside class="hero-rail">
+      <div class="mono rail-cap">ЕЩЁ ДВА ПРОТОТИПА</div>
+      <a href="#projects">
+        <span class="mono">02 / FFA-СТРАТЕГИЯ · ИГРАБЕЛЬНО</span>
+        <b>BARAKI</b>
+        <i>2–5 игроков · свой netcode · 1332 теста</i>
+      </a>
+      <a href="#projects">
+        <span class="mono">03 / ДЕТЕКТИВ · ДИЗАЙН + АРТ</span>
+        <b>Woodberry</b>
+        <i>118 портретов · 32 фона · локальный ИИ</i>
+      </a>
+    </aside>
   </div>
   <div class="bottom">
     <span class="mono">FROSTSPACE / 2026 / SOLO + AI</span>
     <span class="mono cyan">SIGNAL: 12% · SILENCE: DETECTED</span>
-    <span class="mono">01 / 05</span>
+    <span class="mono" id="heroSlideCounter">01 / 03</span>
   </div>
 </header>
 
@@ -483,7 +497,7 @@
 </footer>
 
 <div class="lb" id="lightbox"><button class="close" id="lbClose">ЗАКРЫТЬ</button><img id="lbImg" alt=""></div>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 <script src="assets/js/wood.js"></script>
 </body>
 </html>

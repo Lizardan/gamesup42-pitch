@@ -1,5 +1,33 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* hero slideshow */
+(() => {
+  const slides = [...document.querySelectorAll('.hero-slide')];
+  if (slides.length < 2 || reduceMotion) return;
+  const counter = document.getElementById('heroSlideCounter');
+  const total = String(slides.length).padStart(2, '0');
+  let index = 0;
+  let timer = null;
+  const show = (next) => {
+    slides[index].classList.remove('on');
+    index = next;
+    slides[index].classList.add('on');
+    if (counter) counter.textContent = `${String(index + 1).padStart(2, '0')} / ${total}`;
+  };
+  const start = () => {
+    timer = setInterval(() => show((index + 1) % slides.length), 7000);
+  };
+  start();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(timer);
+      timer = null;
+    } else if (!timer) {
+      start();
+    }
+  });
+})();
+
 /* snow */
 (() => {
   if (reduceMotion) return;
