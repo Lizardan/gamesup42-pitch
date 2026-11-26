@@ -1,0 +1,35 @@
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const ff = path.join(root, 'node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe');
+const vid = 'C:/Users/Lizardan/Desktop/Запись 2026-11-26 023953.mp4';
+const music = 'F:/Unity Projects/FrostSpace/Assets/_Project/Content/Audio/Resources/Music/Music_FrostSpaceTheme.mp3';
+const d = path.join(root, 'docs/design');
+const out = path.join(root, 'site/assets/video/trailer.mp4');
+const segs = [[10,8],[33,5],[45,6],[66,10],[112,10],[136,10]];
+const base = (dur, fadeOut) => `scale=1600:794,fps=25,setpts=PTS-STARTPTS,eq=brightness=-0.02:saturation=1.05,vignette=angle=PI/5,fade=t=in:st=0:d=0.5,fade=t=out:st=${fadeOut}:d=0.5`;
+const f = [];
+segs.forEach(([ss,t],i) => { f.push(`[${i}:v]${base(t, t-0.5)},format=yuv420p[s${i}]`); });
+f.push(`[6:v]scale=1600:794,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.6,fade=t=out:st=2.5:d=0.5[s6]`);
+f.push(`[7:v]scale=1600:794,fps=25,setpts=PTS-STARTPTS,fade=t=in:st=0:d=0.5,fade=t=out:st=3.5:d=0.5[s7]`);
+f.push(`[s6][s0][s1][s2][s3][s4][s5][s7]concat=n=8:v=1:a=0[vc]`);
+f.push(`[vc][9:v]overlay=64:H-200:eof_action=repeat:enable='between(t,11.5,15.5)'[o1]`);
+f.push(`[o1][10:v]overlay=64:H-200:eof_action=repeat:enable='between(t,22.5,31.5)'[o2]`);
+f.push(`[o2][11:v]overlay=64:H-200:eof_action=repeat:enable='between(t,32.5,41.5)'[o3]`);
+f.push(`[o3][12:v]overlay=64:H-200:eof_action=repeat:enable='between(t,42.5,51.5)'[vo]`);
+f.push(`[8:a]atrim=0:56,afade=t=in:st=0:d=1.5,afade=t=out:st=52:d=4,volume=0.9[ao]`);
+const args = ['-y'];
+for (const [ss,t] of segs) args.push('-ss', String(ss), '-t', String(t), '-i', vid);
+args.push('-loop','1','-t','3','-i', path.join(d,'card-title.png'));
+args.push('-loop','1','-t','4','-i', path.join(d,'card-end.png'));
+args.push('-i', music);
+args.push('-loop','1','-t','56','-i', path.join(d,'label-courier.png'));
+args.push('-loop','1','-t','56','-i', path.join(d,'label-cargo.png'));
+args.push('-loop','1','-t','56','-i', path.join(d,'label-depot.png'));
+args.push('-loop','1','-t','56','-i', path.join(d,'label-r7.png'));
+args.push('-filter_complex', f.join(';'), '-map','[vo]','-map','[ao]','-t','56',
+  '-c:v','libx264','-preset','medium','-crf','22','-pix_fmt','yuv420p',
+  '-c:a','aac','-b:a','160k','-movflags','+faststart', out);
+execFileSync(ff, args, { stdio: 'inherit' });
+console.log('trailer done');

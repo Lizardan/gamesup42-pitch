@@ -22,6 +22,7 @@
     <a href="#unique">Механики</a>
     <a href="#ai">Как сделано</a>
     <a href="#roadmap">6 месяцев</a>
+    <a href="#money">Модель</a>
     <a href="#projects">Проекты</a>
   </div>
   <a class="play" href="#play">Играть</a>
@@ -143,7 +144,7 @@
       <p>Не «ещё одна ходьба»: рукописный мир, который читается как место работы, и инструменты, которые меняют взгляд на него.</p>
     </div>
     <div class="grid2">
-      <figure class="shot"><img src="assets/img/scan.png" alt="Сонар: подписи объектов и целей"></figure>
+      <figure class="shot"><img src="assets/img/mechanics.png" alt="Станция «Север-7» после аварии"></figure>
       <div>
         <article class="card" style="margin-bottom:12px"><span class="index">01 / СКАНЕР</span><h3>Сонар на Q</h3><p>Волна находит цели, подписывает ближайший объект и то, что в прицеле. Это не карта и не радар — это способ смотреть на мир.</p></article>
         <article class="card" style="margin-bottom:12px"><span class="index">02 / МИР</span><h3>413 мешей из Blender</h3><p>20 роботов, 13 животных, поезд и 121 клетка по 400 м. Всё собрано скриптами в Blender через MCP — от геометрии до превью.</p></article>
@@ -177,16 +178,14 @@
     <div class="sec-head">
       <span class="num">06 / ВИДЕО</span>
       <h2>Трейлер и прохождение</h2>
-      <p>Трейлер — 51 секунда, дальше три главы прохождения с живым звуком: поезд, погрузка, депо.</p>
+      <p>Трейлер 56 секунд и геймплей 2:12 — запись автора, монтаж с титрами, затемнением и музыкой игры.</p>
     </div>
     <div class="video-frame">
       <video id="player" controls preload="metadata" poster="assets/img/hero.png" src="assets/video/trailer.mp4"></video>
     </div>
     <div class="chapters" id="chapters">
-      <button data-src="assets/video/trailer.mp4" class="on"><span>00 / ТРЕЙЛЕР</span>Меню, корпус, поезд</button>
-      <button data-src="assets/video/gameplay-train.mp4"><span>01 / ПОЕЗД</span>Посадка и R13 · 30 с</button>
-      <button data-src="assets/video/gameplay-carry.mp4"><span>02 / ПОГРУЗКА</span>Аккумуляторы · 35 с</button>
-      <button data-src="assets/video/gameplay-depot.mp4"><span>03 / ДЕПО</span>Авария и R7 · 67 с</button>
+      <button data-src="assets/video/trailer.mp4" class="on"><span>00 / ТРЕЙЛЕР</span>56 секунд · музыка игры</button>
+      <button data-src="assets/video/gameplay.mp4"><span>01 / ГЕЙМПЛЕЙ</span>Прохождение · 2:12</button>
     </div>
   </div>
 </section>
@@ -257,6 +256,7 @@
       <div><b>$70–110k</b><span>бюджет 6 месяцев</span></div>
       <div><b>25,5</b><span>человеко-месяцев</span></div>
     </div>
+    <p style="max-width:72ch;margin-top:20px">Итог: через шесть месяцев — ранний доступ на Steam с 4–6 часами сюжета, станцией-хабом, кооперативом и первым сезоном. Бюджет $70–110k, ядро команды собирается вокруг автора, ИИ закрывает рутину.</p>
     <p class="mono" style="margin-top:22px;color:#5F6B75">ПОДРОБНО: этапы, команда, KPI И РИСКИ — В РАЗДЕЛЕ ПРОИЗВОДСТВА. ИСТОЧНИК — docs/PRODUCTION-PLAN.MD.</p>
   </div>
 </section>
@@ -276,10 +276,46 @@
   </div>
 </section>
 
+<section id="money">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">10 / МОДЕЛЬ</span>
+      <h2>Как игра зарабатывает</h2>
+      <p>Сюжет продаёт игру, сервис удерживает. Косметика и сезоны — без pay-to-win.</p>
+    </div>
+    <div class="grid3">
+      <article class="card">
+        <span class="index">FROSTSPACE</span>
+        <h3>Премиум + сервис</h3>
+        <p>Покупка на Steam: кампания 4–6 часов. После финала — станция-хаб: сетевой кооп, дейлики и ремонт узлов. Деньги — сезоны, косметика курьера и станции, поддержка проекта. Энергии, лутбоксов и pay-to-win нет.</p>
+        <div class="tags"><span>Steam</span><span>кооп</span><span>дейлики</span><span>косметика</span></div>
+      </article>
+      <article class="card">
+        <span class="index">BARAKI</span>
+        <h3>F2P-арена</h3>
+        <p>Бесплатные матчи 2–5 игроков. Монетизация — облики юнитов, героев и баз, сезонный пропуск с косметикой, платные кампании и новые расы. Баланс одинаков для всех.</p>
+        <div class="tags"><span>F2P</span><span>скины</span><span>сезонный пропуск</span></div>
+      </article>
+      <article class="card">
+        <span class="index">WOODBERRY</span>
+        <h3>Премиум + дела</h3>
+        <p>Кооп-хоррор 1–4: покупка игры и сезонные дела-истории. Косметика — наряды и портреты для допросов. Без лутбоксов: только понятные наборы.</p>
+        <div class="tags"><span>премиум</span><span>DLC-дела</span><span>наряды</span></div>
+      </article>
+    </div>
+    <div class="schema" style="margin-top:22px">
+      <div class="box"><b>M4</b><span>станция-хаб и кооп на NGO</span></div>
+      <div class="box"><b>M6</b><span>ранний доступ и сезон 1</span></div>
+      <div class="box"><b>0</b><span>pay-to-win механик</span></div>
+      <div class="box"><b>$</b><span>косметика, сезоны, поддержка</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <span class="num">10 / ПРОЕКТЫ</span>
+      <span class="num">11 / ПРОЕКТЫ</span>
       <h2>Ещё две работы</h2>
       <p>Разные жанры и разные сильные стороны: инженерия сети и производство арта.</p>
     </div>
@@ -370,7 +406,7 @@
 <section id="about-me">
   <div class="wrap">
     <div class="sec-head">
-      <span class="num">11 / АВТОР</span>
+      <span class="num">12 / АВТОР</span>
       <h2>Сергей Станиславович</h2>
       <p>AI-продюсер и геймдизайнер. Собираю игры целиком: мир, механики, код, арт и производство.</p>
     </div>
