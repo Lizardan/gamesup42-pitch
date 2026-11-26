@@ -24,11 +24,13 @@ Workflow: `.github/workflows/pages.yml`.
 ## Скриншоты и видео
 
 ```bash
-node tools/capture/variants.mjs   # три hero-варианта
-node tools/capture/sections.mjs   # скриншоты секций
-node tools/capture/record.mjs     # запись геймплея (Playwright)
-node tools/media/build-media.mjs  # монтаж, webp, титры
+MODE=stills node tools/capture/fs-new.mjs   # меню и выбор корпуса (сборка в site/play/frostspace)
+node tools/media/cards.mjs                  # титры и метки трейлера в стиле сайта
+node tools/media/montage.mjs                # трейлер 56 с + геймплей 2:12 из записи автора
+node tools/deploy/audit-site.mjs            # проверка всех ссылок живого сайта
 ```
+
+Исходник прохождения — `C:/Users/Lizardan/Desktop/Запись 2026-11-26 023953.mp4` (2:54, 2558×1270). Звук игры убран, поверх — `Music_FrostSpaceTheme.mp3`; титры и метки рендерятся Playwright в шрифтах сайта.
 
 ## Что где
 
