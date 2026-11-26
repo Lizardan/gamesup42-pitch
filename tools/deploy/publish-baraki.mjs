@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import AdmZip from 'adm-zip';
 
@@ -22,6 +21,20 @@ html = html
   .replaceAll('{{{ JSON.stringify(PRODUCT_VERSION) }}}', '"0.3.1"')
   .replaceAll('FrostSpace', 'BARAKI');
 
+// WebGL build files keep stable names; bump the URL so Unity/browser caches
+// (including IndexedDB UnityCache) pick up a rebuilt demo instead of the old one.
+const dataPath = path.join(buildDir, 'Build/WebGL.data.unityweb');
+const dataStat = fs.statSync(dataPath);
+const cacheTag = `${dataStat.size.toString(36)}-${Math.round(dataStat.mtimeMs).toString(36)}`;
+for (const file of [
+  'WebGL.loader.js',
+  'WebGL.data.unityweb',
+  'WebGL.framework.js.unityweb',
+  'WebGL.wasm.unityweb',
+]) {
+  html = html.replaceAll(file, `${file}?v=${cacheTag}`);
+}
+
 fs.writeFileSync(path.join(buildDir, 'index.html'), html);
 
 const zip = path.join(buildDir, '..', 'baraki-webgl.zip');
@@ -40,9 +53,9 @@ const addDir = (dir, prefix) => {
 addDir(buildDir, '');
 fs.writeFileSync(zip, archive.toBuffer());
 
-const data = fs.statSync(path.join(buildDir, 'Build/WebGL.data.unityweb')).size;
+const data = dataStat.size;
 const zipSize = fs.statSync(zip).size;
-console.log(`data ${(data / 1048576).toFixed(1)} MiB, zip ${(zipSize / 1048576).toFixed(1)} MiB`);
+console.log(`data ${(data / 1048576).toFixed(1)} MiB, zip ${(zipSize / 1048576).toFixed(1)} MiB, cache=${cacheTag}`);
 if (data > 100 * 1024 * 1024) {
   console.error('data file is over 100 MiB — Pages will reject it');
   process.exit(1);
