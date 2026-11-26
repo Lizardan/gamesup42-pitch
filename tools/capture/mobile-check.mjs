@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+await page.goto('https://lizardan.github.io/gamesup42-pitch/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+await page.waitForTimeout(2500);
+await page.evaluate(() => document.getElementById('money').scrollIntoView({ block: 'start' }));
+await page.waitForTimeout(1500);
+await page.screenshot({ path: path.join(root, 'docs/design/m-money.png') });
+await page.evaluate(() => document.getElementById('play').scrollIntoView({ block: 'start' }));
+await page.waitForTimeout(1200);
+await page.screenshot({ path: path.join(root, 'docs/design/m-play.png') });
+console.log('done');
+await browser.close();
